@@ -1062,71 +1062,88 @@ __webpack_require__.r(__webpack_exports__);
 
 var PostListItemComponent = /** @class */ (function () {
     function PostListItemComponent(router) {
+        var _this = this;
         this.router = router;
+        this.onPostItemSelected = this.debounce(function () {
+            var image = document.getElementById("post-img_" + _this.post._id);
+            var whiteout = document.getElementById('whiteout');
+            whiteout.style.opacity = "1";
+            if (_this.post.image && _this.post.type === 'article') {
+                var rect = image.getBoundingClientRect();
+                // console.log(rect.top, rect.right, rect.bottom, rect.left);
+                var trickImage_1 = document.createElement("IMG");
+                trickImage_1.id = "trick-img";
+                trickImage_1.style.position = "fixed";
+                trickImage_1.style.top = "0";
+                trickImage_1.style.transform = "translateY(" + rect.top + "px)";
+                trickImage_1.style.left = "" + rect.left;
+                trickImage_1.style.margin = '0px';
+                trickImage_1.style.zIndex = "110";
+                trickImage_1.style.width = "100%";
+                trickImage_1.style.objectFit = "cover";
+                trickImage_1.src = _this.post.image;
+                trickImage_1.style.transition = "all 420ms ease";
+                trickImage_1.style.pointerEvents = "none";
+                document.body.appendChild(trickImage_1);
+                setTimeout(function () {
+                    image.style.opacity = "0";
+                    trickImage_1.style.boxShadow = "0 4px 8px 0 rgba(0,0,0,0.2)";
+                    trickImage_1.style.transform = "translateY(56px)";
+                    setTimeout(function () {
+                        _this.router.navigate(['post', _this.post._id]);
+                    }, 420);
+                }, 20);
+                console.log(trickImage_1);
+            }
+            else if (_this.post.image && (_this.post.type === 'book' || _this.post.type === 'documentary')) {
+                var rect = image.getBoundingClientRect();
+                // console.log(rect.top, rect.right, rect.bottom, rect.left);
+                var trickImage_2 = document.createElement("IMG");
+                trickImage_2.id = "trick-img";
+                trickImage_2.style.position = "fixed";
+                trickImage_2.style.top = "0";
+                trickImage_2.style.transform = "translateY(" + rect.top + "px)";
+                trickImage_2.style.left = "" + rect.left;
+                trickImage_2.style.margin = '0px';
+                trickImage_2.style.zIndex = "110";
+                trickImage_2.style.width = "100%";
+                trickImage_2.style.objectFit = "cover";
+                trickImage_2.src = _this.post.image;
+                trickImage_2.style.transition = "all 420ms ease";
+                trickImage_2.style.pointerEvents = "none";
+                document.body.appendChild(trickImage_2);
+                setTimeout(function () {
+                    trickImage_2.style.width = "25%";
+                    image.style.opacity = "0";
+                    trickImage_2.style.boxShadow = "0 4px 8px 0 rgba(0,0,0,0.2)";
+                    trickImage_2.style.transform = "translateY(72px) translateX(16px)";
+                    setTimeout(function () {
+                        _this.router.navigate(['post', _this.post._id]);
+                    }, 420);
+                }, 20);
+                console.log(trickImage_2);
+            }
+        }, 2000, 1);
     }
     PostListItemComponent.prototype.ngOnInit = function () {
     };
-    PostListItemComponent.prototype.onPostItemSelected = function () {
-        var _this = this;
-        var image = document.getElementById("post-img_" + this.post._id);
-        var whiteout = document.getElementById('whiteout');
-        whiteout.style.opacity = "1";
-        if (this.post.image && this.post.type === 'article') {
-            var rect = image.getBoundingClientRect();
-            // console.log(rect.top, rect.right, rect.bottom, rect.left);
-            var trickImage_1 = document.createElement("IMG");
-            trickImage_1.id = "trick-img";
-            trickImage_1.style.position = "fixed";
-            trickImage_1.style.top = "0";
-            trickImage_1.style.transform = "translateY(" + rect.top + "px)";
-            trickImage_1.style.left = "" + rect.left;
-            trickImage_1.style.margin = '0px';
-            trickImage_1.style.zIndex = "110";
-            trickImage_1.style.width = "100%";
-            trickImage_1.style.objectFit = "cover";
-            trickImage_1.src = this.post.image;
-            trickImage_1.style.transition = "all 420ms ease";
-            trickImage_1.style.pointerEvents = "none";
-            document.body.appendChild(trickImage_1);
-            setTimeout(function () {
-                image.style.opacity = "0";
-                trickImage_1.style.boxShadow = "0 4px 8px 0 rgba(0,0,0,0.2)";
-                trickImage_1.style.transform = "translateY(56px)";
-                setTimeout(function () {
-                    _this.router.navigate(['post', _this.post._id]);
-                }, 420);
-            }, 20);
-            console.log(trickImage_1);
-        }
-        else if (this.post.image && (this.post.type === 'book' || this.post.type === 'documentary')) {
-            var rect = image.getBoundingClientRect();
-            // console.log(rect.top, rect.right, rect.bottom, rect.left);
-            var trickImage_2 = document.createElement("IMG");
-            trickImage_2.id = "trick-img";
-            trickImage_2.style.position = "fixed";
-            trickImage_2.style.top = "0";
-            trickImage_2.style.transform = "translateY(" + rect.top + "px)";
-            trickImage_2.style.left = "" + rect.left;
-            trickImage_2.style.margin = '0px';
-            trickImage_2.style.zIndex = "110";
-            trickImage_2.style.width = "100%";
-            trickImage_2.style.objectFit = "cover";
-            trickImage_2.src = this.post.image;
-            trickImage_2.style.transition = "all 420ms ease";
-            trickImage_2.style.pointerEvents = "none";
-            document.body.appendChild(trickImage_2);
-            setTimeout(function () {
-                trickImage_2.style.width = "25%";
-                image.style.opacity = "0";
-                trickImage_2.style.boxShadow = "0 4px 8px 0 rgba(0,0,0,0.2)";
-                trickImage_2.style.transform = "translateY(72px) translateX(16px)";
-                setTimeout(function () {
-                    _this.router.navigate(['post', _this.post._id]);
-                }, 420);
-            }, 20);
-            console.log(trickImage_2);
-        }
+    PostListItemComponent.prototype.debounce = function (func, wait, immediate) {
+        var timeout;
+        return function () {
+            var context = this, args = arguments;
+            var later = function () {
+                timeout = null;
+                if (!immediate)
+                    func.apply(context, args);
+            };
+            var callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow)
+                func.apply(context, args);
+        };
     };
+    ;
     PostListItemComponent.ctorParameters = function () { return [
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }
     ]; };

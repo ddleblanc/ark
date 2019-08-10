@@ -11,12 +11,29 @@ export class PostListItemComponent implements OnInit {
 
   @Input() post;
 
+
   constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
-  onPostItemSelected() {
+  debounce(func, wait, immediate) {
+    let timeout;
+    return function () {
+      let context = this, args = arguments;
+      let later = function () {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      };
+      let callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) func.apply(context, args);
+    };
+  };
+
+
+  onPostItemSelected = this.debounce(() => {
     let image = document.getElementById(`post-img_${this.post._id}`);
     let whiteout = document.getElementById('whiteout');
     whiteout.style.opacity = "1";
@@ -79,6 +96,6 @@ export class PostListItemComponent implements OnInit {
 
 
 
-  }
+  }, 2000, 1)
 
 }

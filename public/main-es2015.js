@@ -1037,69 +1037,86 @@ __webpack_require__.r(__webpack_exports__);
 let PostListItemComponent = class PostListItemComponent {
     constructor(router) {
         this.router = router;
+        this.onPostItemSelected = this.debounce(() => {
+            let image = document.getElementById(`post-img_${this.post._id}`);
+            let whiteout = document.getElementById('whiteout');
+            whiteout.style.opacity = "1";
+            if (this.post.image && this.post.type === 'article') {
+                let rect = image.getBoundingClientRect();
+                // console.log(rect.top, rect.right, rect.bottom, rect.left);
+                let trickImage = document.createElement("IMG");
+                trickImage.id = "trick-img";
+                trickImage.style.position = "fixed";
+                trickImage.style.top = `0`;
+                trickImage.style.transform = `translateY(${rect.top}px)`;
+                trickImage.style.left = `${rect.left}`;
+                trickImage.style.margin = '0px';
+                trickImage.style.zIndex = "110";
+                trickImage.style.width = "100%";
+                trickImage.style.objectFit = "cover";
+                trickImage.src = this.post.image;
+                trickImage.style.transition = "all 420ms ease";
+                trickImage.style.pointerEvents = "none";
+                document.body.appendChild(trickImage);
+                setTimeout(() => {
+                    image.style.opacity = "0";
+                    trickImage.style.boxShadow = "0 4px 8px 0 rgba(0,0,0,0.2)";
+                    trickImage.style.transform = `translateY(56px)`;
+                    setTimeout(() => {
+                        this.router.navigate(['post', this.post._id]);
+                    }, 420);
+                }, 20);
+                console.log(trickImage);
+            }
+            else if (this.post.image && (this.post.type === 'book' || this.post.type === 'documentary')) {
+                let rect = image.getBoundingClientRect();
+                // console.log(rect.top, rect.right, rect.bottom, rect.left);
+                let trickImage = document.createElement("IMG");
+                trickImage.id = "trick-img";
+                trickImage.style.position = "fixed";
+                trickImage.style.top = `0`;
+                trickImage.style.transform = `translateY(${rect.top}px)`;
+                trickImage.style.left = `${rect.left}`;
+                trickImage.style.margin = '0px';
+                trickImage.style.zIndex = "110";
+                trickImage.style.width = "100%";
+                trickImage.style.objectFit = "cover";
+                trickImage.src = this.post.image;
+                trickImage.style.transition = "all 420ms ease";
+                trickImage.style.pointerEvents = "none";
+                document.body.appendChild(trickImage);
+                setTimeout(() => {
+                    trickImage.style.width = "25%";
+                    image.style.opacity = "0";
+                    trickImage.style.boxShadow = "0 4px 8px 0 rgba(0,0,0,0.2)";
+                    trickImage.style.transform = `translateY(72px) translateX(16px)`;
+                    setTimeout(() => {
+                        this.router.navigate(['post', this.post._id]);
+                    }, 420);
+                }, 20);
+                console.log(trickImage);
+            }
+        }, 2000, 1);
     }
     ngOnInit() {
     }
-    onPostItemSelected() {
-        let image = document.getElementById(`post-img_${this.post._id}`);
-        let whiteout = document.getElementById('whiteout');
-        whiteout.style.opacity = "1";
-        if (this.post.image && this.post.type === 'article') {
-            let rect = image.getBoundingClientRect();
-            // console.log(rect.top, rect.right, rect.bottom, rect.left);
-            let trickImage = document.createElement("IMG");
-            trickImage.id = "trick-img";
-            trickImage.style.position = "fixed";
-            trickImage.style.top = `0`;
-            trickImage.style.transform = `translateY(${rect.top}px)`;
-            trickImage.style.left = `${rect.left}`;
-            trickImage.style.margin = '0px';
-            trickImage.style.zIndex = "110";
-            trickImage.style.width = "100%";
-            trickImage.style.objectFit = "cover";
-            trickImage.src = this.post.image;
-            trickImage.style.transition = "all 420ms ease";
-            trickImage.style.pointerEvents = "none";
-            document.body.appendChild(trickImage);
-            setTimeout(() => {
-                image.style.opacity = "0";
-                trickImage.style.boxShadow = "0 4px 8px 0 rgba(0,0,0,0.2)";
-                trickImage.style.transform = `translateY(56px)`;
-                setTimeout(() => {
-                    this.router.navigate(['post', this.post._id]);
-                }, 420);
-            }, 20);
-            console.log(trickImage);
-        }
-        else if (this.post.image && (this.post.type === 'book' || this.post.type === 'documentary')) {
-            let rect = image.getBoundingClientRect();
-            // console.log(rect.top, rect.right, rect.bottom, rect.left);
-            let trickImage = document.createElement("IMG");
-            trickImage.id = "trick-img";
-            trickImage.style.position = "fixed";
-            trickImage.style.top = `0`;
-            trickImage.style.transform = `translateY(${rect.top}px)`;
-            trickImage.style.left = `${rect.left}`;
-            trickImage.style.margin = '0px';
-            trickImage.style.zIndex = "110";
-            trickImage.style.width = "100%";
-            trickImage.style.objectFit = "cover";
-            trickImage.src = this.post.image;
-            trickImage.style.transition = "all 420ms ease";
-            trickImage.style.pointerEvents = "none";
-            document.body.appendChild(trickImage);
-            setTimeout(() => {
-                trickImage.style.width = "25%";
-                image.style.opacity = "0";
-                trickImage.style.boxShadow = "0 4px 8px 0 rgba(0,0,0,0.2)";
-                trickImage.style.transform = `translateY(72px) translateX(16px)`;
-                setTimeout(() => {
-                    this.router.navigate(['post', this.post._id]);
-                }, 420);
-            }, 20);
-            console.log(trickImage);
-        }
+    debounce(func, wait, immediate) {
+        let timeout;
+        return function () {
+            let context = this, args = arguments;
+            let later = function () {
+                timeout = null;
+                if (!immediate)
+                    func.apply(context, args);
+            };
+            let callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow)
+                func.apply(context, args);
+        };
     }
+    ;
 };
 PostListItemComponent.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }
