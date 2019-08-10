@@ -14,6 +14,8 @@ export class AppComponent {
 
   }
 
+
+
   navigateTo({ index }) {
     let route;
     switch (index) {
