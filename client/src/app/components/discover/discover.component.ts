@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { ToolbarService } from 'src/app/services/toolbar.service';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -35,9 +36,10 @@ export class DiscoverComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
 
-  constructor() { }
+  constructor(private _toolbarService: ToolbarService) { }
 
   ngOnInit() {
+    this._toolbarService.setTitle('ARK');
   }
 
 }

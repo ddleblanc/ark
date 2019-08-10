@@ -1,0 +1,38 @@
+.video-thumbnail {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.mat-grid-list{
+    margin-bottom: 16px;
+}
+
+// .video-details {
+//     display: flex;
+//     flex-direction: column;
+//     background-color: red;
+//     h4 {
+//         margin: 0;
+//     }
+//     p {
+//         margin: 0;
+//     }
+// }
+.mat-figure {
+    position: relative;
+}
+.mat-list-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: left;
+}
+.mat-list-item-content {
+    padding-top: 0px;
+}
+.video-list-container {
+    background-color: #fff;
+    padding-left: 16px;
+    padding-right: 16px;
+}

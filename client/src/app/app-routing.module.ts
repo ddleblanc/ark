@@ -9,6 +9,8 @@ import { MessagesComponent } from './components/messages/messages.component';
 import { CreateComponent } from './components/create/create.component';
 import { DiscoverComponent } from './components/discover/discover.component';
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
+import { UserComponent } from './components/user/user.component';
+import { VideosComponent } from './components/videos/videos.component';
 
 
 const routes: Routes = [
@@ -21,6 +23,12 @@ const routes: Routes = [
     ]
   },
   { path: 'profile', component: ProfileComponent },
+  {
+    path: 'user/:username', component: UserComponent,
+    children: [
+      { path: 'videos', component: VideosComponent }
+    ]
+  },
   { path: 'favorites', component: FavoritesComponent },
   { path: 'messages', component: MessagesComponent },
   { path: 'create', component: CreateComponent },

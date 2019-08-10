@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { ToolbarService } from 'src/app/services/toolbar.service';
 
 @Component({
   selector: 'app-create',
@@ -20,9 +21,10 @@ import { trigger, transition, style, animate } from '@angular/animations';
 })
 export class CreateComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _toolbarService: ToolbarService) { }
 
   ngOnInit() {
+    this._toolbarService.setTitle('ARK');
   }
 
 }

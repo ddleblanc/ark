@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ToolbarService } from 'src/app/services/toolbar.service';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +22,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(private router: Router, private route: ActivatedRoute, private _toolbarService: ToolbarService) {
 
   }
   private selectedTab;
@@ -77,6 +78,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.router.navigate([`feed`], { relativeTo: this.route });
+    this._toolbarService.setTitle('ARK');
   }
 
 }

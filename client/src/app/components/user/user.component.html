@@ -1,0 +1,40 @@
+<div class="page-container" [@enterAnimation] (touchstart)="swipe($event, 'start')" (touchend)="swipe($event, 'end')">
+    <mat-tab-group mat-align-tabs="center" [selectedIndex]="selectedTab" (selectedTabChange)="navigateTo($event)">
+        <mat-tab label="VIDEOS">
+
+            <div class="main-container" (swipeleft)="swipe($event.type)" (swiperight)="swipe($event.type)">
+                <ng-template matTabContent>
+                    <router-outlet></router-outlet>
+                </ng-template>
+            </div>
+        </mat-tab>
+        <mat-tab label="ARTICLES">
+            <div class="main-container" (swipeleft)="swipe($event.type)" (swiperight)="swipe($event.type)">
+                <ng-template matTabContent>
+                    <router-outlet></router-outlet>
+
+
+                </ng-template>
+            </div>
+        </mat-tab>
+        <mat-tab label="BOOKS">
+            <div class="main-container" (swipeleft)="swipe($event.type)" (swiperight)="swipe($event.type)">
+                <ng-template matTabContent>
+                    <router-outlet></router-outlet>
+
+
+                </ng-template>
+            </div>
+        </mat-tab>
+        <mat-tab label="Files">
+            <div class="main-container" (swipeleft)="swipe($event.type)" (swiperight)="swipe($event.type)">
+                <ng-template matTabContent>
+                    <router-outlet></router-outlet>
+
+
+                </ng-template>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+
+</div>

@@ -97,5 +97,7 @@ export class PostListItemComponent implements OnInit {
 
 
   }, 2000, 1)
-
+  onUserSelected() {
+    this.router.navigate(['user', 'dayz'])
+  }
 }

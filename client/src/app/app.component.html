@@ -1,8 +1,9 @@
 <mat-toolbar>
-  <mat-icon id="left-nav-btn" *ngIf="isPostRoute(router.url)" class="example-tab-icon" (click)="onBackClicked()">
+  <mat-icon id="left-nav-btn" *ngIf="isPostRoute(router.url) || isUserRoute(router.url)" class="example-tab-icon"
+    (click)="onBackClicked()">
     arrow_back</mat-icon>
   <span class="logo">
-    <h1>ARK</h1>
+    <h1>{{title}}</h1>
   </span>
 </mat-toolbar>
 <div class="main-container">
@@ -11,8 +12,8 @@
   <router-outlet></router-outlet>
 
 </div>
-<mat-tab-group *ngIf="!isPostRoute(router.url)" mat-stretch-tabs id="app-tab-group" headerPosition="below"
-  (selectedTabChange)="navigateTo($event)">
+<mat-tab-group *ngIf="!isPostRoute(router.url) && !isUserRoute(router.url) " mat-stretch-tabs id="app-tab-group"
+  headerPosition="below" (selectedTabChange)="navigateTo($event)">
   <mat-tab>
     <ng-template mat-tab-label>
       <mat-icon class="example-tab-icon">home</mat-icon>

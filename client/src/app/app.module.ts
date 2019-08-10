@@ -20,6 +20,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
 import { SafePipe } from './pipes/safe.pipe';
 import { BottomsheetComponent } from './components/bottomsheet/bottomsheet.component';
+import { UserComponent } from './components/user/user.component';
+import { VideoListComponent } from './components/video-list/video-list.component';
+import { VideosComponent } from './components/videos/videos.component';
 
 
 @NgModule({
@@ -37,7 +40,10 @@ import { BottomsheetComponent } from './components/bottomsheet/bottomsheet.compo
     DiscoverComponent,
     PostDetailComponent,
     SafePipe,
-    BottomsheetComponent
+    BottomsheetComponent,
+    UserComponent,
+    VideoListComponent,
+    VideosComponent
   ],
   imports: [
     BrowserModule,

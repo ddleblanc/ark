@@ -1,0 +1,25 @@
+<div class="video-list-container">
+    <mat-list>
+        <h3 mat-subheader>Documentaries</h3>
+        <mat-grid-list *ngFor="let vid of vids" cols="8" rowHeight="1:2">
+            <mat-grid-tile colspan="3"><img class="video-thumbnail" src="https://source.unsplash.com/random" alt="">
+            </mat-grid-tile>
+            <mat-grid-tile class="video-details" colspan="5">
+                <mat-list class="mat-list-inner">
+                    <mat-list-item>
+                        <h4 mat-line>Video Title</h4>
+                        <p mat-line> {{date}} </p>
+                    </mat-list-item>
+                </mat-list>
+            </mat-grid-tile>
+        </mat-grid-list>
+
+        <!-- <mat-divider></mat-divider>
+    <h3 mat-subheader>Notes</h3>
+    <mat-list-item *ngFor="let note of notes">
+        <mat-icon mat-list-icon>note</mat-icon>
+        <h4 mat-line>{{note.name}}</h4>
+        <p mat-line> {{note.updated | date}} </p>
+    </mat-list-item> -->
+    </mat-list>
+</div>

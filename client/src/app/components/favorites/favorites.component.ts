@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { PostService } from 'src/app/services/post.service';
+import { ToolbarService } from 'src/app/services/toolbar.service';
 
 @Component({
   selector: 'app-favorites',
@@ -23,10 +24,11 @@ export class FavoritesComponent implements OnInit {
 
   posts;
 
-  constructor(private postService: PostService) { }
+  constructor(private postService: PostService, private _toolbarService: ToolbarService) { }
 
   ngOnInit() {
     this.posts = this.postService.getPosts();
+    this._toolbarService.setTitle('ARK');
   }
 
 }
