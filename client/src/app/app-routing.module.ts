@@ -1,0 +1,35 @@
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { HomeComponent } from './components/home/home.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { FavoritesComponent } from './components/favorites/favorites.component';
+import { FeedComponent } from './components/home/feed/feed.component';
+import { PopularComponent } from './components/home/popular/popular.component';
+import { MessagesComponent } from './components/messages/messages.component';
+import { CreateComponent } from './components/create/create.component';
+import { DiscoverComponent } from './components/discover/discover.component';
+import { PostDetailComponent } from './components/post-detail/post-detail.component';
+
+
+const routes: Routes = [
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  {
+    path: 'home', component: HomeComponent,
+    children: [
+      { path: 'feed', component: FeedComponent },
+      { path: 'popular', component: PopularComponent }
+    ]
+  },
+  { path: 'profile', component: ProfileComponent },
+  { path: 'favorites', component: FavoritesComponent },
+  { path: 'messages', component: MessagesComponent },
+  { path: 'create', component: CreateComponent },
+  { path: 'discover', component: DiscoverComponent },
+  { path: 'post/:_id', component: PostDetailComponent }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }

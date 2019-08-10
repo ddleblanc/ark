@@ -1,0 +1,23 @@
+<div *ngIf="post" id="post-item">
+    <mat-card>
+        <mat-card-header>
+            <div mat-card-avatar class="post-item-header-image"></div>
+            <mat-card-title>{{post.user}}</mat-card-title>
+            <mat-card-subtitle>{{post.title}}</mat-card-subtitle>
+        </mat-card-header>
+        <img *ngIf="post.image" (click)="onPostItemSelected()" id="post-img_{{post._id}}" mat-card-image
+            src="{{post.image}}" alt="Photo of a Shiba Inu">
+        <!-- <iframe *ngIf="post.video" id="post-img_{{post._id}}" width="100%" height="100%" [src]="post.video | safe"
+            frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe> -->
+        <mat-card-actions>
+            <button id="fav-btn" mat-icon-button aria-label="Example icon-button with a heart icon">
+                <mat-icon>favorite</mat-icon>
+            </button>
+            <button id="share-btn" mat-icon-button aria-label="Example icon-button with a heart icon">
+                <mat-icon>share</mat-icon>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>
+<div id="whiteout"></div>

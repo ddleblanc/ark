@@ -1,0 +1,19 @@
+<div [@enterAnimation]>
+    <button mat-button (click)="openBottomSheet()"><span>
+            <mat-icon *ngIf="sortby === 'Hot'" mat-list-icon>whatshot</mat-icon>
+            <mat-icon *ngIf="sortby === 'New'" mat-list-icon>access_time</mat-icon>
+            <mat-icon *ngIf="sortby === 'Top'" mat-list-icon>bar_chart</mat-icon>
+            <mat-icon *ngIf="sortby === 'Controversial'" mat-list-icon>pie_chart</mat-icon>
+            <mat-icon *ngIf="sortby === 'Educational'" mat-list-icon>school</mat-icon>
+        </span>
+        <mat-form-field>
+            <mat-label>{{sortby}}</mat-label>
+            <mat-select>
+                <mat-option *ngFor="let food of foods" [value]="sortby">
+                    {{sortby}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </button>
+    <app-post-list [posts]="posts"></app-post-list>
+</div>

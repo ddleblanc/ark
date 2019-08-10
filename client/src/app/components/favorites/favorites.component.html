@@ -1,0 +1,5 @@
+<div [@enterAnimation]>
+    <div *ngFor="let post of posts.slice().reverse()">
+        <app-post-list-item [post]="post"></app-post-list-item>
+    </div>
+</div>

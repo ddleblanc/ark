@@ -1,0 +1,17 @@
+mat-icon {
+    vertical-align: middle;
+}
+
+::ng-deep .mat-form-field-underline {
+    display: none;
+  }
+
+  mat-form-field {
+      position: absolute;
+      top: -4px;
+  }
+
+  button {
+      width: 100%;
+      text-align: left;
+  }

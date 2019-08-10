@@ -1,0 +1,21 @@
+chat-chats-sidenav .sidenav-content .chat-list .contact, chat-chats-sidenav .sidenav-content .contact-list .contact {
+    white-space: normal;
+    text-align: left;
+    letter-spacing: .01em;
+    min-height: 88px;
+    border-bottom: 1px solid;
+    padding: 16px;
+    font-weight: 400;
+    border-radius: 0;
+}
+
+.avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+button {
+    margin-top: 16px;
+}

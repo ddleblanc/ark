@@ -1,0 +1,54 @@
+<ng-container *ngIf="post">
+    <div class="page-container">
+        <img id="post-cover-img" src="{{post.image}}" alt=""
+            [ngClass]="{'book-cover': post.type === 'book' || post.type === 'documentary'}">
+        <span *ngIf="post.type === 'book' || post.type === 'documentary' " id="media-details" [@enterAnimation]>
+            <h3 id="media-title">{{post.title}}</h3>
+            <h3>by <i>{{post.author}}</i> </h3>
+            <ng-container *ngIf="post.tags">
+                <mat-chip-list aria-label="Fish selection">
+                    <mat-chip *ngFor="let tag of post.tags">{{tag}}</mat-chip>
+                </mat-chip-list>
+            </ng-container>
+        </span>
+        <div id="post-detail-container" [@enterAnimation]>
+            <h1>{{post.title}}</h1>
+
+            <mat-tab-group *ngIf="post.type === 'book' || post.type === 'documentary'; else noBook"
+                mat-align-tabs="center">
+                <mat-tab label="Review">
+
+                    <div class="main-container">
+                        <ng-template matTabContent>
+                            <p>{{post.message}}</p>
+
+
+
+
+                        </ng-template>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Summary">
+                    <div class="main-container">
+                        <ng-template matTabContent>
+                            <p>{{post.summary}}</p>
+
+
+                        </ng-template>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+
+            <ng-template #noBook>
+                <p>{{post.message}}</p>
+            </ng-template>
+
+        </div>
+    </div>
+    <form class="comment-form">
+
+        <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="Leave a comment"></textarea>
+        </mat-form-field>
+    </form>
+</ng-container>

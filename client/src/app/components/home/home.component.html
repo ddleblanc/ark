@@ -1,0 +1,26 @@
+<div class="page-container" [@enterAnimation]>
+    <mat-tab-group mat-align-tabs="center" (selectedTabChange)="navigateTo($event)">
+        <mat-tab label="Feed">
+
+            <div class="main-container">
+                <ng-template matTabContent>
+                    <router-outlet></router-outlet>
+
+
+
+
+                </ng-template>
+            </div>
+        </mat-tab>
+        <mat-tab label="Popular">
+            <div class="main-container">
+                <ng-template matTabContent>
+                    <router-outlet></router-outlet>
+
+
+                </ng-template>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+
+</div>

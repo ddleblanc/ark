@@ -1,0 +1,113 @@
+<mat-toolbar>
+  <mat-icon id="left-nav-btn" *ngIf="isPostRoute(router.url)" class="example-tab-icon" (click)="onBackClicked()">
+    arrow_back</mat-icon>
+  <span class="logo">
+    <h1>ARK</h1>
+  </span>
+</mat-toolbar>
+<div class="main-container">
+
+
+  <router-outlet></router-outlet>
+
+</div>
+<mat-tab-group *ngIf="!isPostRoute(router.url)" mat-stretch-tabs id="app-tab-group" headerPosition="below"
+  (selectedTabChange)="navigateTo($event)">
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">home</mat-icon>
+    </ng-template>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">public</mat-icon>
+    </ng-template>
+
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">edit</mat-icon>
+    </ng-template>
+
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">favorite</mat-icon>
+    </ng-template>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">email</mat-icon>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<mat-toolbar>My App</mat-toolbar>
+<mat-tab-group mat-stretch-tabs id="tab-group" headerPosition="below" (selectedTabChange)="navigateTo($event)">
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">home</mat-icon>
+    </ng-template>
+    <div class="main-container">
+      <ng-template matTabContent>
+
+        <router-outlet></router-outlet>
+
+
+      </ng-template>
+    </div>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">person</mat-icon>
+    </ng-template>
+    <div class="main-container">
+      <ng-template matTabContent>
+
+        <router-outlet></router-outlet>
+
+      </ng-template>
+    </div>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">favorite</mat-icon>
+    </ng-template>
+    <div class="main-container">
+      <ng-template matTabContent>
+
+        <router-outlet></router-outlet>
+
+      </ng-template>
+    </div>
+  </mat-tab>
+</mat-tab-group> -->

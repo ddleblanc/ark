@@ -1,0 +1,63 @@
+#post-cover-img {
+
+    width: 100%;
+    object-fit: cover;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+.page-container {
+    background-color: #fff;
+}
+
+
+.mat-tab-group {
+    background-color: #fff;
+    border: none;
+}
+
+.mat-tab-header {
+    border: none;
+    opacity: 0;
+}
+
+.mat-tab-body-wrapper {
+    background-color: #fff;
+}
+
+.mat-tab-list {
+    position: fixed;
+    top:0;
+    left: 100px;
+}
+
+.comment-form {
+    z-index: 99;
+    background: #fff;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.1);
+    padding-left: 16px;
+    padding-right: 16px;
+    mat-form-field {
+        width: 100%;
+    }
+}
+
+.book-cover {
+    transform: translateY(16px);
+    width: 25% !important;
+    margin-left: 16px;
+}
+
+#media-details {
+    width: 60%;
+    position: absolute;
+    right: 16px;
+    top: 72px;
+    
+}
+#media-title {
+    margin-top:-4px;
+    margin-bottom: 0px;
+}
