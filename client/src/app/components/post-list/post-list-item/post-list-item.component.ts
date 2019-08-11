@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { post } from 'selenium-webdriver/http';
 import { Router } from '@angular/router';
 
 @Component({
@@ -85,7 +84,7 @@ export class PostListItemComponent implements OnInit {
         trickImage.style.width = "25%";
         image.style.opacity = "0";
         trickImage.style.boxShadow = "0 4px 8px 0 rgba(0,0,0,0.2)"
-        trickImage.style.transform = `translateY(72px) translateX(16px)`;
+        trickImage.style.transform = `translateY(176px) translateX(16px)`;
 
         setTimeout(() => {
           this.router.navigate(['post', this.post._id])

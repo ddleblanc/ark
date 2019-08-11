@@ -2,11 +2,17 @@ const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-
+const passport = require("passport");
+const db = require("./server/db/index");
 
 process.setMaxListeners(0);
 
 const app = express();
+
+const users = require("./server/users/user_routes");
+const auth = require("./server/auth/auth_routes");
+const posts = require("./server/posts/post_routes");
+const comments = require("./server/comments/comment_routes");
 
 // Port Number
 const PORT = 3000;
@@ -21,7 +27,17 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: "true" }));
 app.use(bodyParser.json({ limit: 5 * 1024 * 2014 }));
 
+//Passport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
+require("./server/config/passport")(passport);
+
+// Routes
+app.use("/api/v1/users", users);
+app.use("/api/v1/auth", auth);
+app.use("/api/v1/posts", posts);
+app.use("/api/v1/comments", comments)
 app.use(express.static(path.join(__dirname, "public")));
 app.get("*", (req, res) => {
     console.log("gettingg");
@@ -29,10 +45,10 @@ app.get("*", (req, res) => {
 });
 
 // Connect to databse, then start Server
-
-app.listen(PORT, () => {
-    console.log("Listening on port: " + PORT);
+db.connect().then(() => {
+    app.listen(PORT, () => {
+        console.log("Listening on port: " + PORT);
+    });
 });
-
 
 module.exports = app;

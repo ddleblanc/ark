@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { PostService } from 'src/app/services/post.service';
 import { ActivatedRoute } from '@angular/router';
 import { trigger, transition, style, animate } from '@angular/animations';
@@ -20,10 +20,20 @@ import { StarRatingColor } from './rating/rating.component';
         style({ opacity: 1 }),
         animate("500ms", style({ opacity: 0 }))
       ])
+    ]),
+    trigger("fadeAnimation", [
+      transition(":enter", [
+        style({ opacity: 0 }),
+        animate("500ms ease-in-out", style({ opacity: 1 }))
+      ]),
+      transition(":leave", [
+        style({ opacity: 1 }),
+        animate("500ms", style({ opacity: 0 }))
+      ])
     ])
   ]
 })
-export class PostDetailComponent implements OnInit {
+export class PostDetailComponent implements OnInit, AfterViewInit {
   rating: number = 3;
   starCount: number = 5;
   starColor: StarRatingColor = StarRatingColor.primary;
@@ -45,6 +55,18 @@ export class PostDetailComponent implements OnInit {
       document.body.removeChild(image);
       image.style.opacity = "0";
     }
+
+
+
+
+
+
+  }
+
+  ngAfterViewInit() {
+    let img = document.getElementById(`post-cover-img`);
+    let rect = img.getBoundingClientRect();
+    console.log(rect.top, rect.right, rect.bottom, rect.left);
 
   }
 
