@@ -12,6 +12,11 @@
     padding: 0;
 }
 
+.white-bg {
+    background-color: #fff;
+    padding: 16px !important;
+}
+
 .mat-tab-group {
     background-color: #fff;
     border: none;
@@ -76,3 +81,11 @@ mat-card {
       border-bottom: 1px solid #ccc;
       box-shadow: none !important;
     }
+
+    h1 {
+        margin-top: 0;
+    }
+
+.no-padding{
+    padding: 0px !important;
+}
