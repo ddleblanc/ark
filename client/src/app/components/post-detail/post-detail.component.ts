@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PostService } from 'src/app/services/post.service';
 import { ActivatedRoute } from '@angular/router';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { MatBottomSheet } from '@angular/material';
+import { CommentComponent } from '../comment/comment.component';
 
 @Component({
   selector: 'app-post-detail',
@@ -25,9 +27,10 @@ export class PostDetailComponent implements OnInit {
   post;
   postId: string;
 
-  constructor(private route: ActivatedRoute, private postService: PostService) { }
+  constructor(private route: ActivatedRoute, private postService: PostService, private _bottomSheet: MatBottomSheet) { }
 
   ngOnInit() {
+    window.scrollTo(0, 0);
     this.route.params.subscribe(params => { this.postId = params._id; console.log(params._id) })
     this.post = this.postService.getPostById(this.postId);
     console.log(this.post)
@@ -38,6 +41,10 @@ export class PostDetailComponent implements OnInit {
       image.style.opacity = "0";
     }
 
+  }
+
+  openCommentSection(): void {
+    this._bottomSheet.open(CommentComponent, { data: { post: this.post }, panelClass: 'comment-section-radius' })
   }
 
 }

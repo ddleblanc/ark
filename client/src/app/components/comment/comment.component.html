@@ -1,0 +1,18 @@
+<div class="comment-section-container">
+    <div class="comments">
+        <div *ngFor="let comment of comments" class="comment-container">
+            <img src="https://source.unsplash.com/random" alt="" class="avatar">
+            <div class="comment-content">
+                <h3 class="username">{{comment.user.username}}</h3>
+                <p class="comment">{{comment.comment}}</p>
+                <p class="time">{{comment.createdAt | timeAgo}}</p>
+            </div>
+            <mat-divider></mat-divider>
+        </div>
+    </div>
+    <form class="comment-form" id="comment-input">
+
+        <textarea matInput placeholder="Leave a comment" autofocus></textarea>
+    </form>
+
+</div>

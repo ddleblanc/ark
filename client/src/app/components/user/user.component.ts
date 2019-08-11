@@ -25,7 +25,8 @@ export class UserComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private _toolbarService: ToolbarService) { }
 
   ngOnInit() {
-    this.router.navigate([`videos`], { relativeTo: this.route });
+    window.scrollTo(0, 0);
+    // this.router.navigate([`videos`], { relativeTo: this.route });
     this._toolbarService.setTitle('DAYZ OF NOAH');
   }
 
