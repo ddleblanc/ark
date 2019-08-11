@@ -23,6 +23,8 @@ import { BottomsheetComponent } from './components/bottomsheet/bottomsheet.compo
 import { UserComponent } from './components/user/user.component';
 import { VideoListComponent } from './components/video-list/video-list.component';
 import { VideosComponent } from './components/videos/videos.component';
+import { CommentComponent } from './components/comment/comment.component';
+import { TimaAgoPipe } from './pipes/timeAgo.pipe';
 
 
 @NgModule({
@@ -40,10 +42,12 @@ import { VideosComponent } from './components/videos/videos.component';
     DiscoverComponent,
     PostDetailComponent,
     SafePipe,
+    TimaAgoPipe,
     BottomsheetComponent,
     UserComponent,
     VideoListComponent,
-    VideosComponent
+    VideosComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +58,7 @@ import { VideosComponent } from './components/videos/videos.component';
     ReactiveFormsModule
   ],
   providers: [PostService],
-  entryComponents: [BottomsheetComponent],
+  entryComponents: [BottomsheetComponent, CommentComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

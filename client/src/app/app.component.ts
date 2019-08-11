@@ -2,11 +2,27 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from "@angular/common";
 import { ToolbarService } from './services/toolbar.service';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [
+    trigger("bottomNavEnterAnimation", [
+      transition(":enter", [
+        style({ transform: "translateY(70px)", opacity: 0 }),
+        animate(
+          "320ms ease-in-out",
+          style({ transform: "translateY(0px)", opacity: 1 })
+        )
+      ]),
+      transition(":leave", [
+        style({ transform: "translateY(0px)", opacity: 1 }),
+        animate("420ms", style({ transform: "translateY(70px)", opacity: 0 }))
+      ])
+    ]),
+  ]
 })
 export class AppComponent implements OnInit {
   private title;

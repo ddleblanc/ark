@@ -23,6 +23,7 @@ const routes: Routes = [
     ]
   },
   { path: 'profile', component: ProfileComponent },
+  { path: 'user/:username', redirectTo: 'user/:username/videos', pathMatch: 'full' },
   {
     path: 'user/:username', component: UserComponent,
     children: [

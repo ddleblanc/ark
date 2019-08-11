@@ -12,8 +12,8 @@
   <router-outlet></router-outlet>
 
 </div>
-<mat-tab-group *ngIf="!isPostRoute(router.url) && !isUserRoute(router.url) " mat-stretch-tabs id="app-tab-group"
-  headerPosition="below" (selectedTabChange)="navigateTo($event)">
+<mat-tab-group [@bottomNavEnterAnimation] *ngIf="!isPostRoute(router.url) && !isUserRoute(router.url) " mat-stretch-tabs
+  id="app-tab-group" headerPosition="below" (selectedTabChange)="navigateTo($event)">
   <mat-tab>
     <ng-template mat-tab-label>
       <mat-icon class="example-tab-icon">home</mat-icon>

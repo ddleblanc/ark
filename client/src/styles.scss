@@ -32,3 +32,27 @@ p {
     
   padding: 0px 24px 64px 24px;
   }
+
+// Comment Section Styles
+.comment-section-radius {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+.comment-form {
+  overflow: hidden;
+  height: 48px;
+  z-index: 99;
+  background: #fff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.1);
+  padding-left: 16px;
+  padding-right: 16px;
+  mat-form-field {
+      width: 100%;
+  }
+}
