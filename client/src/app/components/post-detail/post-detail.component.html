@@ -4,15 +4,19 @@
             [ngClass]="{'book-cover': post.type === 'book' || post.type === 'documentary'}">
         <span *ngIf="post.type === 'book' || post.type === 'documentary' " id="media-details" [@enterAnimation]>
             <h3 id="media-title">{{post.title}}</h3>
-            <h3>by <i>{{post.author}}</i> </h3>
-            <ng-container *ngIf="post.tags">
+            <h5>by <i>{{post.author}}</i> </h5>
+            <app-rating [rating]="rating" [starCount]="starCount" [color]="starColor"
+                (ratingUpdated)="onRatingChanged($event)"></app-rating>
+            <h3>{{post.rating}}</h3>
+            <!-- <ng-container *ngIf="post.tags">
                 <mat-chip-list aria-label="Fish selection">
                     <mat-chip *ngFor="let tag of post.tags">{{tag}}</mat-chip>
                 </mat-chip-list>
-            </ng-container>
+            </ng-container> -->
         </span>
-        <div id="post-detail-container" [@enterAnimation]>
-            <h1>{{post.title}}</h1>
+        <div id="post-detail-container" [@enterAnimation]
+            [ngClass]="{'move-down':  post.type === 'book' || post.type === 'documentary' }">
+            <h1 *ngIf="post.type !== 'book' && post.type !== 'documentary' ">{{post.title}}</h1>
 
             <mat-tab-group *ngIf="post.type === 'book' || post.type === 'documentary'; else noBook"
                 mat-align-tabs="center">

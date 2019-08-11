@@ -18,6 +18,7 @@ export class PostService {
       image: "https://images-na.ssl-images-amazon.com/images/I/91e-zS-ZoXL.jpg",
       tags: ["They Live", "Obey"],
       type: "book",
+      rating: 8.1,
       comments: [
         {
           user: { username: "Dayz" },
@@ -54,6 +55,7 @@ export class PostService {
       image: "https://media0.giphy.com/media/OIu3fg1r9tAJ2/giphy.gif?cid=790b7611d7d1076864b016b218417becc0dc2901a2f42c8a&rid=giphy.gif",
       tags: ["Orwellian", "Brave New World"],
       type: "book",
+      rating: 8.5,
       comments: [
         {
           user: { username: "Dayz" },

@@ -140,7 +140,18 @@ module.exports = "<div class=\"page-container\" [@enterAnimation]>\n    <button\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ng-container *ngIf=\"post\">\n    <div class=\"page-container\">\n        <img id=\"post-cover-img\" src=\"{{post.image}}\" alt=\"\"\n            [ngClass]=\"{'book-cover': post.type === 'book' || post.type === 'documentary'}\">\n        <span *ngIf=\"post.type === 'book' || post.type === 'documentary' \" id=\"media-details\" [@enterAnimation]>\n            <h3 id=\"media-title\">{{post.title}}</h3>\n            <h3>by <i>{{post.author}}</i> </h3>\n            <ng-container *ngIf=\"post.tags\">\n                <mat-chip-list aria-label=\"Fish selection\">\n                    <mat-chip *ngFor=\"let tag of post.tags\">{{tag}}</mat-chip>\n                </mat-chip-list>\n            </ng-container>\n        </span>\n        <div id=\"post-detail-container\" [@enterAnimation]>\n            <h1>{{post.title}}</h1>\n\n            <mat-tab-group *ngIf=\"post.type === 'book' || post.type === 'documentary'; else noBook\"\n                mat-align-tabs=\"center\">\n                <mat-tab label=\"Review\">\n\n                    <div class=\"main-container\">\n                        <ng-template matTabContent>\n                            <p>{{post.message}}</p>\n\n\n\n\n                        </ng-template>\n                    </div>\n                </mat-tab>\n                <mat-tab label=\"Summary\">\n                    <div class=\"main-container\">\n                        <ng-template matTabContent>\n                            <p>{{post.summary}}</p>\n\n\n                        </ng-template>\n                    </div>\n                </mat-tab>\n            </mat-tab-group>\n\n            <ng-template #noBook>\n                <p>{{post.message}}</p>\n            </ng-template>\n\n        </div>\n    </div>\n    <form class=\"comment-form\" (click)=\"openCommentSection()\">\n\n        <mat-form-field class=\"example-full-width\">\n            <textarea matInput placeholder=\"Leave a comment\"></textarea>\n        </mat-form-field>\n    </form>\n</ng-container>"
+module.exports = "<ng-container *ngIf=\"post\">\n    <div class=\"page-container\">\n        <img id=\"post-cover-img\" src=\"{{post.image}}\" alt=\"\"\n            [ngClass]=\"{'book-cover': post.type === 'book' || post.type === 'documentary'}\">\n        <span *ngIf=\"post.type === 'book' || post.type === 'documentary' \" id=\"media-details\" [@enterAnimation]>\n            <h3 id=\"media-title\">{{post.title}}</h3>\n            <h5>by <i>{{post.author}}</i> </h5>\n            <app-rating [rating]=\"rating\" [starCount]=\"starCount\" [color]=\"starColor\"\n                (ratingUpdated)=\"onRatingChanged($event)\"></app-rating>\n            <h3>{{post.rating}}</h3>\n            <!-- <ng-container *ngIf=\"post.tags\">\n                <mat-chip-list aria-label=\"Fish selection\">\n                    <mat-chip *ngFor=\"let tag of post.tags\">{{tag}}</mat-chip>\n                </mat-chip-list>\n            </ng-container> -->\n        </span>\n        <div id=\"post-detail-container\" [@enterAnimation]\n            [ngClass]=\"{'move-down':  post.type === 'book' || post.type === 'documentary' }\">\n            <h1 *ngIf=\"post.type !== 'book' && post.type !== 'documentary' \">{{post.title}}</h1>\n\n            <mat-tab-group *ngIf=\"post.type === 'book' || post.type === 'documentary'; else noBook\"\n                mat-align-tabs=\"center\">\n                <mat-tab label=\"Review\">\n\n                    <div class=\"main-container\">\n                        <ng-template matTabContent>\n                            <p>{{post.message}}</p>\n\n\n\n\n                        </ng-template>\n                    </div>\n                </mat-tab>\n                <mat-tab label=\"Summary\">\n                    <div class=\"main-container\">\n                        <ng-template matTabContent>\n                            <p>{{post.summary}}</p>\n\n\n                        </ng-template>\n                    </div>\n                </mat-tab>\n            </mat-tab-group>\n\n            <ng-template #noBook>\n                <p>{{post.message}}</p>\n            </ng-template>\n\n        </div>\n    </div>\n    <form class=\"comment-form\" (click)=\"openCommentSection()\">\n\n        <mat-form-field class=\"example-full-width\">\n            <textarea matInput placeholder=\"Leave a comment\"></textarea>\n        </mat-form-field>\n    </form>\n</ng-container>"
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/index.js!./src/app/components/post-detail/rating/rating.component.html":
+/*!***********************************************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/components/post-detail/rating/rating.component.html ***!
+  \***********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<button mat-icon-button class=\"star\" [color]=\"color\" *ngFor=\"let ratingId of ratingArr;index as i\" [id]=\"'star_'+i\"\n    (click)=\"onClick(i+1)\" [matTooltip]=\"ratingId+1\" matTooltipPosition=\"above\">\n    <mat-icon>\n        {{showIcon(i)}}\n    </mat-icon>\n</button>"
 
 /***/ }),
 
@@ -434,6 +445,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_videos_videos_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/videos/videos.component */ "./src/app/components/videos/videos.component.ts");
 /* harmony import */ var _components_comment_comment_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/comment/comment.component */ "./src/app/components/comment/comment.component.ts");
 /* harmony import */ var _pipes_timeAgo_pipe__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./pipes/timeAgo.pipe */ "./src/app/pipes/timeAgo.pipe.ts");
+/* harmony import */ var _components_post_detail_rating_rating_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/post-detail/rating/rating.component */ "./src/app/components/post-detail/rating/rating.component.ts");
+
 
 
 
@@ -485,7 +498,8 @@ var AppModule = /** @class */ (function () {
                 _components_user_user_component__WEBPACK_IMPORTED_MODULE_22__["UserComponent"],
                 _components_video_list_video_list_component__WEBPACK_IMPORTED_MODULE_23__["VideoListComponent"],
                 _components_videos_videos_component__WEBPACK_IMPORTED_MODULE_24__["VideosComponent"],
-                _components_comment_comment_component__WEBPACK_IMPORTED_MODULE_25__["CommentComponent"]
+                _components_comment_comment_component__WEBPACK_IMPORTED_MODULE_25__["CommentComponent"],
+                _components_post_detail_rating_rating_component__WEBPACK_IMPORTED_MODULE_27__["RatingComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -1179,7 +1193,7 @@ var MessagesComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "#post-cover-img {\n  width: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);\n}\n\n.page-container {\n  background-color: #fff;\n}\n\n.mat-tab-group {\n  background-color: #fff;\n  border: none;\n}\n\n.mat-tab-header {\n  border: none;\n  opacity: 0;\n}\n\n.mat-tab-body-wrapper {\n  background-color: #fff;\n}\n\n.mat-tab-list {\n  position: fixed;\n  top: 0;\n  left: 100px;\n}\n\n.book-cover {\n  transform: translateY(16px);\n  width: 25% !important;\n  margin-left: 16px;\n}\n\n#media-details {\n  width: 60%;\n  position: absolute;\n  right: 16px;\n  top: 72px;\n}\n\n#media-title {\n  margin-top: -4px;\n  margin-bottom: 0px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9wb3N0LWRldGFpbC9DOlxcd29ya3NwYWNlXFxhcmtcXGNsaWVudC9zcmNcXGFwcFxcY29tcG9uZW50c1xccG9zdC1kZXRhaWxcXHBvc3QtZGV0YWlsLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9jb21wb25lbnRzL3Bvc3QtZGV0YWlsL3Bvc3QtZGV0YWlsLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBRUksV0FBQTtFQUNBLG9CQUFBO0tBQUEsaUJBQUE7RUFDQSwwQ0FBQTtBQ0FKOztBREVBO0VBQ0ksc0JBQUE7QUNDSjs7QURHQTtFQUNJLHNCQUFBO0VBQ0EsWUFBQTtBQ0FKOztBREdBO0VBQ0ksWUFBQTtFQUNBLFVBQUE7QUNBSjs7QURHQTtFQUNJLHNCQUFBO0FDQUo7O0FER0E7RUFDSSxlQUFBO0VBQ0EsTUFBQTtFQUNBLFdBQUE7QUNBSjs7QURLQTtFQUNJLDJCQUFBO0VBQ0EscUJBQUE7RUFDQSxpQkFBQTtBQ0ZKOztBREtBO0VBQ0ksVUFBQTtFQUNBLGtCQUFBO0VBQ0EsV0FBQTtFQUNBLFNBQUE7QUNGSjs7QURLQTtFQUNJLGdCQUFBO0VBQ0Esa0JBQUE7QUNGSiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvcG9zdC1kZXRhaWwvcG9zdC1kZXRhaWwuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIjcG9zdC1jb3Zlci1pbWcge1xyXG5cclxuICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgb2JqZWN0LWZpdDogY292ZXI7XHJcbiAgICBib3gtc2hhZG93OiAwIDRweCA4cHggMCByZ2JhKDAsMCwwLDAuMik7XHJcbn1cclxuLnBhZ2UtY29udGFpbmVyIHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICNmZmY7XHJcbn1cclxuXHJcblxyXG4ubWF0LXRhYi1ncm91cCB7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmO1xyXG4gICAgYm9yZGVyOiBub25lO1xyXG59XHJcblxyXG4ubWF0LXRhYi1oZWFkZXIge1xyXG4gICAgYm9yZGVyOiBub25lO1xyXG4gICAgb3BhY2l0eTogMDtcclxufVxyXG5cclxuLm1hdC10YWItYm9keS13cmFwcGVyIHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICNmZmY7XHJcbn1cclxuXHJcbi5tYXQtdGFiLWxpc3Qge1xyXG4gICAgcG9zaXRpb246IGZpeGVkO1xyXG4gICAgdG9wOjA7XHJcbiAgICBsZWZ0OiAxMDBweDtcclxufVxyXG5cclxuXHJcblxyXG4uYm9vay1jb3ZlciB7XHJcbiAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoMTZweCk7XHJcbiAgICB3aWR0aDogMjUlICFpbXBvcnRhbnQ7XHJcbiAgICBtYXJnaW4tbGVmdDogMTZweDtcclxufVxyXG5cclxuI21lZGlhLWRldGFpbHMge1xyXG4gICAgd2lkdGg6IDYwJTtcclxuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgIHJpZ2h0OiAxNnB4O1xyXG4gICAgdG9wOiA3MnB4O1xyXG4gICAgXHJcbn1cclxuI21lZGlhLXRpdGxlIHtcclxuICAgIG1hcmdpbi10b3A6LTRweDtcclxuICAgIG1hcmdpbi1ib3R0b206IDBweDtcclxufSIsIiNwb3N0LWNvdmVyLWltZyB7XG4gIHdpZHRoOiAxMDAlO1xuICBvYmplY3QtZml0OiBjb3ZlcjtcbiAgYm94LXNoYWRvdzogMCA0cHggOHB4IDAgcmdiYSgwLCAwLCAwLCAwLjIpO1xufVxuXG4ucGFnZS1jb250YWluZXIge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmO1xufVxuXG4ubWF0LXRhYi1ncm91cCB7XG4gIGJhY2tncm91bmQtY29sb3I6ICNmZmY7XG4gIGJvcmRlcjogbm9uZTtcbn1cblxuLm1hdC10YWItaGVhZGVyIHtcbiAgYm9yZGVyOiBub25lO1xuICBvcGFjaXR5OiAwO1xufVxuXG4ubWF0LXRhYi1ib2R5LXdyYXBwZXIge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmO1xufVxuXG4ubWF0LXRhYi1saXN0IHtcbiAgcG9zaXRpb246IGZpeGVkO1xuICB0b3A6IDA7XG4gIGxlZnQ6IDEwMHB4O1xufVxuXG4uYm9vay1jb3ZlciB7XG4gIHRyYW5zZm9ybTogdHJhbnNsYXRlWSgxNnB4KTtcbiAgd2lkdGg6IDI1JSAhaW1wb3J0YW50O1xuICBtYXJnaW4tbGVmdDogMTZweDtcbn1cblxuI21lZGlhLWRldGFpbHMge1xuICB3aWR0aDogNjAlO1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHJpZ2h0OiAxNnB4O1xuICB0b3A6IDcycHg7XG59XG5cbiNtZWRpYS10aXRsZSB7XG4gIG1hcmdpbi10b3A6IC00cHg7XG4gIG1hcmdpbi1ib3R0b206IDBweDtcbn0iXX0= */"
+module.exports = "#post-cover-img {\n  width: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);\n}\n\n.page-container {\n  background-color: #fff;\n}\n\n.mat-tab-group {\n  background-color: #fff;\n  border: none;\n}\n\n.mat-tab-header {\n  border: none;\n  opacity: 0;\n}\n\n.mat-tab-body-wrapper {\n  background-color: #fff;\n}\n\n.mat-tab-list {\n  position: fixed;\n  top: 0;\n  left: 100px;\n}\n\n.book-cover {\n  transform: translateY(16px);\n  width: 25% !important;\n  margin-left: 16px;\n}\n\n#media-details {\n  width: 60%;\n  position: absolute;\n  right: 16px;\n  top: 72px;\n}\n\n#media-title {\n  margin-top: -4px;\n  margin-bottom: 0px;\n}\n\nh5 {\n  margin: 0;\n  margin-bottom: 16px;\n}\n\n.move-down {\n  margin-top: 48px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9wb3N0LWRldGFpbC9DOlxcd29ya3NwYWNlXFxhcmtcXGNsaWVudC9zcmNcXGFwcFxcY29tcG9uZW50c1xccG9zdC1kZXRhaWxcXHBvc3QtZGV0YWlsLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9jb21wb25lbnRzL3Bvc3QtZGV0YWlsL3Bvc3QtZGV0YWlsLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBRUksV0FBQTtFQUNBLG9CQUFBO0tBQUEsaUJBQUE7RUFDQSwwQ0FBQTtBQ0FKOztBREVBO0VBQ0ksc0JBQUE7QUNDSjs7QURHQTtFQUNJLHNCQUFBO0VBQ0EsWUFBQTtBQ0FKOztBREdBO0VBQ0ksWUFBQTtFQUNBLFVBQUE7QUNBSjs7QURHQTtFQUNJLHNCQUFBO0FDQUo7O0FER0E7RUFDSSxlQUFBO0VBQ0EsTUFBQTtFQUNBLFdBQUE7QUNBSjs7QURLQTtFQUNJLDJCQUFBO0VBQ0EscUJBQUE7RUFDQSxpQkFBQTtBQ0ZKOztBREtBO0VBQ0ksVUFBQTtFQUNBLGtCQUFBO0VBQ0EsV0FBQTtFQUNBLFNBQUE7QUNGSjs7QURLQTtFQUNJLGdCQUFBO0VBQ0Esa0JBQUE7QUNGSjs7QURLQTtFQUNJLFNBQUE7RUFDQSxtQkFBQTtBQ0ZKOztBREtBO0VBQ0ksZ0JBQUE7QUNGSiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvcG9zdC1kZXRhaWwvcG9zdC1kZXRhaWwuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIjcG9zdC1jb3Zlci1pbWcge1xyXG5cclxuICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgb2JqZWN0LWZpdDogY292ZXI7XHJcbiAgICBib3gtc2hhZG93OiAwIDRweCA4cHggMCByZ2JhKDAsMCwwLDAuMik7XHJcbn1cclxuLnBhZ2UtY29udGFpbmVyIHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICNmZmY7XHJcbn1cclxuXHJcblxyXG4ubWF0LXRhYi1ncm91cCB7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmO1xyXG4gICAgYm9yZGVyOiBub25lO1xyXG59XHJcblxyXG4ubWF0LXRhYi1oZWFkZXIge1xyXG4gICAgYm9yZGVyOiBub25lO1xyXG4gICAgb3BhY2l0eTogMDtcclxufVxyXG5cclxuLm1hdC10YWItYm9keS13cmFwcGVyIHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICNmZmY7XHJcbn1cclxuXHJcbi5tYXQtdGFiLWxpc3Qge1xyXG4gICAgcG9zaXRpb246IGZpeGVkO1xyXG4gICAgdG9wOjA7XHJcbiAgICBsZWZ0OiAxMDBweDtcclxufVxyXG5cclxuXHJcblxyXG4uYm9vay1jb3ZlciB7XHJcbiAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoMTZweCk7XHJcbiAgICB3aWR0aDogMjUlICFpbXBvcnRhbnQ7XHJcbiAgICBtYXJnaW4tbGVmdDogMTZweDtcclxufVxyXG5cclxuI21lZGlhLWRldGFpbHMge1xyXG4gICAgd2lkdGg6IDYwJTtcclxuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgIHJpZ2h0OiAxNnB4O1xyXG4gICAgdG9wOiA3MnB4O1xyXG4gICAgXHJcbn1cclxuI21lZGlhLXRpdGxlIHtcclxuICAgIG1hcmdpbi10b3A6LTRweDtcclxuICAgIG1hcmdpbi1ib3R0b206IDBweDtcclxufVxyXG5cclxuaDUge1xyXG4gICAgbWFyZ2luOiAwO1xyXG4gICAgbWFyZ2luLWJvdHRvbTogMTZweDtcclxufVxyXG5cclxuLm1vdmUtZG93biB7XHJcbiAgICBtYXJnaW4tdG9wOiA0OHB4O1xyXG59IiwiI3Bvc3QtY292ZXItaW1nIHtcbiAgd2lkdGg6IDEwMCU7XG4gIG9iamVjdC1maXQ6IGNvdmVyO1xuICBib3gtc2hhZG93OiAwIDRweCA4cHggMCByZ2JhKDAsIDAsIDAsIDAuMik7XG59XG5cbi5wYWdlLWNvbnRhaW5lciB7XG4gIGJhY2tncm91bmQtY29sb3I6ICNmZmY7XG59XG5cbi5tYXQtdGFiLWdyb3VwIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZjtcbiAgYm9yZGVyOiBub25lO1xufVxuXG4ubWF0LXRhYi1oZWFkZXIge1xuICBib3JkZXI6IG5vbmU7XG4gIG9wYWNpdHk6IDA7XG59XG5cbi5tYXQtdGFiLWJvZHktd3JhcHBlciB7XG4gIGJhY2tncm91bmQtY29sb3I6ICNmZmY7XG59XG5cbi5tYXQtdGFiLWxpc3Qge1xuICBwb3NpdGlvbjogZml4ZWQ7XG4gIHRvcDogMDtcbiAgbGVmdDogMTAwcHg7XG59XG5cbi5ib29rLWNvdmVyIHtcbiAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDE2cHgpO1xuICB3aWR0aDogMjUlICFpbXBvcnRhbnQ7XG4gIG1hcmdpbi1sZWZ0OiAxNnB4O1xufVxuXG4jbWVkaWEtZGV0YWlscyB7XG4gIHdpZHRoOiA2MCU7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgcmlnaHQ6IDE2cHg7XG4gIHRvcDogNzJweDtcbn1cblxuI21lZGlhLXRpdGxlIHtcbiAgbWFyZ2luLXRvcDogLTRweDtcbiAgbWFyZ2luLWJvdHRvbTogMHB4O1xufVxuXG5oNSB7XG4gIG1hcmdpbjogMDtcbiAgbWFyZ2luLWJvdHRvbTogMTZweDtcbn1cblxuLm1vdmUtZG93biB7XG4gIG1hcmdpbi10b3A6IDQ4cHg7XG59Il19 */"
 
 /***/ }),
 
@@ -1200,6 +1214,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_animations__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/animations */ "./node_modules/@angular/animations/fesm5/animations.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _comment_comment_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../comment/comment.component */ "./src/app/components/comment/comment.component.ts");
+/* harmony import */ var _rating_rating_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./rating/rating.component */ "./src/app/components/post-detail/rating/rating.component.ts");
+
 
 
 
@@ -1212,6 +1228,11 @@ var PostDetailComponent = /** @class */ (function () {
         this.route = route;
         this.postService = postService;
         this._bottomSheet = _bottomSheet;
+        this.rating = 3;
+        this.starCount = 5;
+        this.starColor = _rating_rating_component__WEBPACK_IMPORTED_MODULE_7__["StarRatingColor"].primary;
+        this.starColorP = _rating_rating_component__WEBPACK_IMPORTED_MODULE_7__["StarRatingColor"].primary;
+        this.starColorW = _rating_rating_component__WEBPACK_IMPORTED_MODULE_7__["StarRatingColor"].warn;
     }
     PostDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1224,6 +1245,10 @@ var PostDetailComponent = /** @class */ (function () {
             document.body.removeChild(image);
             image.style.opacity = "0";
         }
+    };
+    PostDetailComponent.prototype.onRatingChanged = function (rating) {
+        console.log(rating);
+        this.rating = rating;
     };
     PostDetailComponent.prototype.openCommentSection = function () {
         this._bottomSheet.open(_comment_comment_component__WEBPACK_IMPORTED_MODULE_6__["CommentComponent"], { data: { post: this.post }, panelClass: 'comment-section-radius' });
@@ -1255,6 +1280,92 @@ var PostDetailComponent = /** @class */ (function () {
     return PostDetailComponent;
 }());
 
+
+
+/***/ }),
+
+/***/ "./src/app/components/post-detail/rating/rating.component.scss":
+/*!*********************************************************************!*\
+  !*** ./src/app/components/post-detail/rating/rating.component.scss ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".star {\n  height: 24px;\n  width: 24px;\n  padding: 0;\n  margin: 0;\n  margin-bottom: 16px;\n}\n\n.mat-icon-button {\n  line-height: 0px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9wb3N0LWRldGFpbC9yYXRpbmcvQzpcXHdvcmtzcGFjZVxcYXJrXFxjbGllbnQvc3JjXFxhcHBcXGNvbXBvbmVudHNcXHBvc3QtZGV0YWlsXFxyYXRpbmdcXHJhdGluZy5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvY29tcG9uZW50cy9wb3N0LWRldGFpbC9yYXRpbmcvcmF0aW5nLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksWUFBQTtFQUNBLFdBQUE7RUFDQSxVQUFBO0VBQ0EsU0FBQTtFQUNBLG1CQUFBO0FDQ0o7O0FERUE7RUFDSSxnQkFBQTtBQ0NKIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9wb3N0LWRldGFpbC9yYXRpbmcvcmF0aW5nLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnN0YXIge1xyXG4gICAgaGVpZ2h0OiAyNHB4O1xyXG4gICAgd2lkdGg6IDI0cHg7XHJcbiAgICBwYWRkaW5nOiAwO1xyXG4gICAgbWFyZ2luOiAwO1xyXG4gICAgbWFyZ2luLWJvdHRvbTogMTZweDtcclxufVxyXG5cclxuLm1hdC1pY29uLWJ1dHRvbiB7XHJcbiAgICBsaW5lLWhlaWdodDogMHB4O1xyXG59IiwiLnN0YXIge1xuICBoZWlnaHQ6IDI0cHg7XG4gIHdpZHRoOiAyNHB4O1xuICBwYWRkaW5nOiAwO1xuICBtYXJnaW46IDA7XG4gIG1hcmdpbi1ib3R0b206IDE2cHg7XG59XG5cbi5tYXQtaWNvbi1idXR0b24ge1xuICBsaW5lLWhlaWdodDogMHB4O1xufSJdfQ== */"
+
+/***/ }),
+
+/***/ "./src/app/components/post-detail/rating/rating.component.ts":
+/*!*******************************************************************!*\
+  !*** ./src/app/components/post-detail/rating/rating.component.ts ***!
+  \*******************************************************************/
+/*! exports provided: RatingComponent, StarRatingColor */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RatingComponent", function() { return RatingComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StarRatingColor", function() { return StarRatingColor; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var RatingComponent = /** @class */ (function () {
+    function RatingComponent() {
+        this.rating = 3;
+        this.starCount = 5;
+        this.color = 'accent';
+        this.ratingUpdated = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.ratingArr = [];
+    }
+    RatingComponent.prototype.ngOnInit = function () {
+        console.log("a " + this.starCount);
+        for (var index = 0; index < this.starCount; index++) {
+            this.ratingArr.push(index);
+        }
+    };
+    RatingComponent.prototype.onClick = function (rating) {
+        console.log(rating);
+        this.ratingUpdated.emit(rating);
+        return false;
+    };
+    RatingComponent.prototype.showIcon = function (index) {
+        if (this.rating >= index + 1) {
+            return 'star';
+        }
+        else {
+            return 'star_border';
+        }
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])('rating')
+    ], RatingComponent.prototype, "rating", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])('starCount')
+    ], RatingComponent.prototype, "starCount", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])('color')
+    ], RatingComponent.prototype, "color", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()
+    ], RatingComponent.prototype, "ratingUpdated", void 0);
+    RatingComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-rating',
+            template: __webpack_require__(/*! raw-loader!./rating.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/post-detail/rating/rating.component.html"),
+            encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewEncapsulation"].Emulated,
+            styles: [__webpack_require__(/*! ./rating.component.scss */ "./src/app/components/post-detail/rating/rating.component.scss")]
+        })
+    ], RatingComponent);
+    return RatingComponent;
+}());
+
+var StarRatingColor;
+(function (StarRatingColor) {
+    StarRatingColor["primary"] = "primary";
+    StarRatingColor["accent"] = "accent";
+    StarRatingColor["warn"] = "warn";
+})(StarRatingColor || (StarRatingColor = {}));
 
 
 /***/ }),
@@ -1742,10 +1853,10 @@ var MaterialModule = /** @class */ (function () {
     MaterialModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             imports: [
-                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatButtonModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatRippleModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTooltipModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatGridListModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatListModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatBottomSheetModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatOptionModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSelectModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatInputModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatChipsModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatCheckboxModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatIconModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatMenuModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTabsModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatCardModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatToolbarModule"]
+                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatButtonModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSnackBarModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatRippleModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTooltipModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatGridListModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatListModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatBottomSheetModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatOptionModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSelectModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatInputModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatChipsModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatCheckboxModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatIconModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatMenuModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTabsModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatCardModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatToolbarModule"]
             ],
             exports: [
-                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatButtonModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatRippleModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTooltipModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatGridListModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatListModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatBottomSheetModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatOptionModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatInputModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSelectModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatChipsModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatCheckboxModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatIconModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatMenuModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTabsModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatCardModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatToolbarModule"]
+                _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatButtonModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSnackBarModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatRippleModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTooltipModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatGridListModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatListModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatBottomSheetModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatOptionModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatInputModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSelectModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatChipsModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatCheckboxModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatIconModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatMenuModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTabsModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatCardModule"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatToolbarModule"]
             ]
         })
     ], MaterialModule);
@@ -1857,6 +1968,7 @@ var PostService = /** @class */ (function () {
                 image: "https://images-na.ssl-images-amazon.com/images/I/91e-zS-ZoXL.jpg",
                 tags: ["They Live", "Obey"],
                 type: "book",
+                rating: 8.1,
                 comments: [
                     {
                         user: { username: "Dayz" },
@@ -1893,6 +2005,7 @@ var PostService = /** @class */ (function () {
                 image: "https://media0.giphy.com/media/OIu3fg1r9tAJ2/giphy.gif?cid=790b7611d7d1076864b016b218417becc0dc2901a2f42c8a&rid=giphy.gif",
                 tags: ["Orwellian", "Brave New World"],
                 type: "book",
+                rating: 8.5,
                 comments: [
                     {
                         user: { username: "Dayz" },

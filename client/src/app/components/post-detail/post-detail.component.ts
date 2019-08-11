@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { MatBottomSheet } from '@angular/material';
 import { CommentComponent } from '../comment/comment.component';
+import { StarRatingColor } from './rating/rating.component';
 
 @Component({
   selector: 'app-post-detail',
@@ -23,7 +24,11 @@ import { CommentComponent } from '../comment/comment.component';
   ]
 })
 export class PostDetailComponent implements OnInit {
-
+  rating: number = 3;
+  starCount: number = 5;
+  starColor: StarRatingColor = StarRatingColor.primary;
+  starColorP: StarRatingColor = StarRatingColor.primary;
+  starColorW: StarRatingColor = StarRatingColor.warn;
   post;
   postId: string;
 
@@ -41,6 +46,11 @@ export class PostDetailComponent implements OnInit {
       image.style.opacity = "0";
     }
 
+  }
+
+  onRatingChanged(rating) {
+    console.log(rating);
+    this.rating = rating;
   }
 
   openCommentSection(): void {

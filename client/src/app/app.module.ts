@@ -25,6 +25,7 @@ import { VideoListComponent } from './components/video-list/video-list.component
 import { VideosComponent } from './components/videos/videos.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { TimaAgoPipe } from './pipes/timeAgo.pipe';
+import { RatingComponent } from './components/post-detail/rating/rating.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { TimaAgoPipe } from './pipes/timeAgo.pipe';
     UserComponent,
     VideoListComponent,
     VideosComponent,
-    CommentComponent
+    CommentComponent,
+    RatingComponent
   ],
   imports: [
     BrowserModule,
