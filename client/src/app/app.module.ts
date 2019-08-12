@@ -26,6 +26,17 @@ import { VideosComponent } from './components/videos/videos.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { TimaAgoPipe } from './pipes/timeAgo.pipe';
 import { RatingComponent } from './components/post-detail/rating/rating.component';
+import { PostDetailReviewComponent } from './components/post-detail/post-detail-review/post-detail-review.component';
+import { PostDetailSummaryComponent } from './components/post-detail/post-detail-summary/post-detail-summary.component';
+
+import { SwiperModule } from 'ngx-swiper-wrapper';
+import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+
+const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+  direction: 'horizontal',
+  slidesPerView: 1
+};
 
 
 @NgModule({
@@ -49,7 +60,9 @@ import { RatingComponent } from './components/post-detail/rating/rating.componen
     VideoListComponent,
     VideosComponent,
     CommentComponent,
-    RatingComponent
+    RatingComponent,
+    PostDetailReviewComponent,
+    PostDetailSummaryComponent
   ],
   imports: [
     BrowserModule,
@@ -57,9 +70,13 @@ import { RatingComponent } from './components/post-detail/rating/rating.componen
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SwiperModule
   ],
-  providers: [PostService],
+  providers: [PostService, {
+    provide: SWIPER_CONFIG,
+    useValue: DEFAULT_SWIPER_CONFIG
+  }],
   entryComponents: [BottomsheetComponent, CommentComponent],
   bootstrap: [AppComponent]
 })

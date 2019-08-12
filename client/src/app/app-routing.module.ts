@@ -11,6 +11,8 @@ import { DiscoverComponent } from './components/discover/discover.component';
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
 import { UserComponent } from './components/user/user.component';
 import { VideosComponent } from './components/videos/videos.component';
+import { PostDetailReviewComponent } from './components/post-detail/post-detail-review/post-detail-review.component';
+import { PostDetailSummaryComponent } from './components/post-detail/post-detail-summary/post-detail-summary.component';
 
 
 const routes: Routes = [
@@ -34,7 +36,12 @@ const routes: Routes = [
   { path: 'messages', component: MessagesComponent },
   { path: 'create', component: CreateComponent },
   { path: 'discover', component: DiscoverComponent },
-  { path: 'post/:_id', component: PostDetailComponent }
+  {
+    path: 'post/:_id', component: PostDetailComponent, children: [
+      { path: 'review', component: PostDetailReviewComponent },
+      { path: 'summary', component: PostDetailSummaryComponent }
+    ]
+  }
 ];
 
 @NgModule({
