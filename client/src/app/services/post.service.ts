@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -404,7 +406,9 @@ export class PostService {
     }
   ]
 
-  constructor() { }
+  private apiUrl = environment.apiUrl;
+
+  constructor(private http: HttpClient) { }
 
   getPosts() {
     return this.posts
@@ -414,6 +418,19 @@ export class PostService {
       return post._id == id;
     })
     return post[0];
+  }
+  addPost(fd) {
+    let headers = new HttpHeaders();
+    headers.append("Accept", "application/json");
+    return this.http.post(this.apiUrl + "posts", fd, { headers: headers });
+  }
+  async getAllPosts() {
+    let headers = new HttpHeaders();
+    headers.append("Accept", "application/json");
+    return await this.http.get(`${this.apiUrl}posts`, {
+      headers: headers
+    })
+      .toPromise();
   }
 }
 

@@ -24,47 +24,19 @@ router
 
 // FUNCTIONS
 
-const multerUpload = require("../config/multer").upload;
+const upload = require("../config/multer").upload;
 
 // Add Post to user
-router.post("", (req, res, next) => {
-  multerUpload(req, res, err => {
-    if (err) {
-      console.log(err);
-    } else {
-      async function uploading() {
-        let postData = JSON.parse(req.body.post);
-        postDataWithPhoto = { ...postData, photo: req.file.filename };
-        createdPost = await postCtrl
-          .createPost(postDataWithPhoto)
-          .catch(function (err) {
-            if (err.name == "ValidationError") {
-              res.status(422).json(err);
-            } else {
-              res.status(500).json(err);
-            }
-          });
-        currentUser = await userCtrl
-          .getUserById(postDataWithPhoto.user)
-          .catch(function (err) {
-            if (err) {
-              res.status(422).json({
-                success: false,
-                msg: "No user found"
-              });
-            }
-          });
+router.post("", (request, response, next) => {
 
-        currentUser.posts.push(createdPost._id);
-        currentUser.save();
-        res.json({
-          success: true,
-          msg: "Posted",
-          createdPost: createdPost
-        });
-      }
-      uploading();
+  upload(request, response, function (error) {
+    console.log(JSON.parse(request.body.meta));
+    if (error) {
+      console.log(error);
+      return response.redirect("/error");
     }
+
+    response.redirect("/success");
   });
 });
 
@@ -82,8 +54,13 @@ async function getPostById(req, res) {
 }
 
 async function getAllPosts(req, res) {
-  let posts = await postCtrl.getAllPosts();
-  res.json(posts);
+
+  var fileName = "pexels-photo-2076596.jpeg";
+  var directory = "https://arkfile.sfo2.cdn.digitaloceanspaces.com/" + fileName;
+  res.json({ dir: directory });
+
+  // let posts = await postCtrl.getAllPosts();
+  // res.json(posts);
 }
 
 async function addComment(req, res) {

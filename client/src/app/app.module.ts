@@ -32,6 +32,7 @@ import { PostDetailSummaryComponent } from './components/post-detail/post-detail
 import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+import { HttpClientModule } from '@angular/common/http';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -71,7 +72,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    SwiperModule
+    SwiperModule,
+    HttpClientModule,
   ],
   providers: [PostService, {
     provide: SWIPER_CONFIG,

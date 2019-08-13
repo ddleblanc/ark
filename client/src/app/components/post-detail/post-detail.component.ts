@@ -47,6 +47,7 @@ export class PostDetailComponent implements OnInit, AfterViewInit {
   prevIndex = 0;
   curIndex;
   currentVideo;
+  videoTitle = "Big Bunny"
 
   constructor(private router: Router, private route: ActivatedRoute, private postService: PostService, private _bottomSheet: MatBottomSheet) { }
 
@@ -139,6 +140,16 @@ export class PostDetailComponent implements OnInit, AfterViewInit {
     this.currentVideo = <HTMLVideoElement>videos[i];
     this.currentVideo.play()
     this.prevIndex = i;
+    switch (i) {
+      case 0:
+        this.videoTitle = 'Big Bunny'
+        break;
+      case 1:
+        this.videoTitle = 'Pokemon'
+        break;
+      default:
+      // code block
+    }
   }
   openFullscreen() {
     if (this.currentVideo.requestFullscreen) {

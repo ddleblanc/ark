@@ -1,33 +1,24 @@
 const multer = require("multer");
+const multerS3 = require('multer-s3');
 const path = require("path");
 const env = require("./env");
+const s3 = require('./aws').s3;
 
-// Set Storage Engine
-const storage = multer.diskStorage({
-  // destination: "./angular-src/src/assets", // Development
-  destination: './public/assets', // Production
-  // destination: env.uploadDestination,
-  filename: function (req, file, cb) {
-    cb(
-      null,
-      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
-    );
-  }
-});
 
-const imageFilter = function (req, file, cb) {
-  // accept image only
-  if (!file.originalname.match(/\.(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$/)) {
-    return cb(new Error("Only image files are allowed!"), false);
-  }
-  cb(null, true);
-};
-
-// Init Upload
 const upload = multer({
-  storage: storage,
-  fileFilter: imageFilter
-}).single("photo");
+  storage: multerS3({
+    s3: s3,
+    bucket: 'arkfile',
+    contentType: multerS3.AUTO_CONTENT_TYPE,
+    acl: 'public-read',
+    key: function (request, file, cb) {
+      // console.log(JSON.parse(request.body.meta));
+      var newFileName = Date.now() + "-" + file.originalname;
+      var fullPath = `username/filetype/` + newFileName;
+      cb(null, fullPath);
+    }
+  })
+}).array('file', 1);
 
 module.exports = {
   upload: upload

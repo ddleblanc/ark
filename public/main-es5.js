@@ -63,7 +63,7 @@ module.exports = "<div class=\"comment-section-container\">\n    <div class=\"co
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"page-container\" [@enterAnimation]>\n    <div id=\"post-detail-container\">\n        <h1>Create</h1>\n        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta voluptates facere beatae vero alias\n            accusamus\n            ipsum\n            vitae voluptas perferendis odit illum deleniti fugiat eveniet velit ratione, minima et. Beatae, distinctio?\n        </p>\n    </div>\n</div>"
+module.exports = "<div class=\"page-container\" [@enterAnimation]>\n    <div id=\"post-detail-container\">\n        <h1>Create</h1>\n        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta voluptates facere beatae vero alias\n            accusamus\n            ipsum\n            vitae voluptas perferendis odit illum deleniti fugiat eveniet velit ratione, minima et. Beatae, distinctio?\n        </p>\n        <input id=\"file-input\" type=\"file\" name=\"file\" (change)=\"onFileSelected($event)\" #fileInput />\n        <button mat-raised-button (click)=\"onPostSubmit()\">upload</button>\n        <img *ngIf=\"img\" src=\"{{img}}\" alt=\"\">\n    </div>\n</div>"
 
 /***/ }),
 
@@ -162,7 +162,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ng-container *ngIf=\"post\">\n    <div class=\"page-container\">\n        <mat-card *ngIf=\"post.type === 'book' || post.type === 'documentary' \">\n            <img *ngIf=\"post.image\" [@fadeAnimation] id=\"post-bg\" mat-card-image src=\"{{post.image}}\"\n                alt=\"Photo of a Shiba Inu\">\n            <!-- <iframe *ngIf=\"post.video\" id=\"post-img_{{post._id}}\" width=\"100%\" height=\"100%\" [src]=\"post.video | safe\"\n                        frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\"\n                        allowfullscreen></iframe> -->\n            <mat-card-footer id=\"cover-footer\">\n                <img id=\"post-cover-img\" src=\"{{post.image}}\" alt=\"\"\n                    [ngClass]=\"{'book-cover': post.type === 'book' || post.type === 'documentary'}\">\n                <span id=\"media-details\" [@enterAnimation]>\n                    <h3 id=\"media-title\">{{post.title}}</h3>\n                    <h5>by <i>{{post.author}}</i> </h5>\n                    <!-- <app-rating [rating]=\"rating\" [starCount]=\"starCount\" [color]=\"starColor\"\n                        (ratingUpdated)=\"onRatingChanged($event)\"></app-rating> -->\n                    <!-- <h3>{{post.rating}}</h3> -->\n                    <!-- <ng-container *ngIf=\"post.tags\">\n                                <mat-chip-list aria-label=\"Fish selection\">\n                                    <mat-chip *ngFor=\"let tag of post.tags\">{{tag}}</mat-chip>\n                                </mat-chip-list>\n                            </ng-container> -->\n                </span>\n            </mat-card-footer>\n        </mat-card>\n\n        <img *ngIf=\"post.type !== 'book' && post.type !== 'documentary' \" id=\"post-cover-img\" src=\"{{post.image}}\"\n            alt=\"\">\n        <div id=\"post-detail-container\" [@enterAnimation]\n            [ngClass]=\"{'move-down':  post.type === 'book' || post.type === 'documentary', 'white-bg':  post.type !== 'book' && post.type !== 'documentary'  }\">\n            <h1 *ngIf=\"post.type !== 'book' && post.type !== 'documentary' \">{{post.title}}</h1>\n\n            <mat-card [ngClass]=\"{ 'no-padding':  post.type !== 'book' && post.type !== 'documentary'  }\"\n                (touchstart)=\"swipe($event, 'start')\" (touchend)=\"swipe($event, 'end')\">\n                <mat-tab-group *ngIf=\"post.type === 'book' || post.type === 'documentary'; else noBook\"\n                    mat-align-tabs=\"center\" [selectedIndex]=\"selectedTab\" (selectedTabChange)=\"navigateTo($event)\">\n                    <mat-tab label=\"Review\">\n\n                        <div class=\"main-container\">\n                            <ng-template matTabContent>\n                                <router-outlet></router-outlet>\n\n\n\n\n                            </ng-template>\n                        </div>\n                    </mat-tab>\n                    <mat-tab label=\"Summary\">\n                        <div class=\"main-container\">\n                            <ng-template matTabContent>\n                                <router-outlet></router-outlet>\n\n\n                            </ng-template>\n                        </div>\n                    </mat-tab>\n                </mat-tab-group>\n            </mat-card>\n\n\n\n            <ng-template #noBook>\n                <p>{{post.message}}</p>\n                <div class=\"swiper-container\" [swiper]=\"config\" [(index)]=\"index\"\n                    (indexChange)=\"switchPlayback($event)\">\n                    <div class=\"swiper-wrapper\" (click)=\"openFullscreen()\">\n\n                        <!-- <img class=\"swiper-slide\"\n                            src=\"https://images.unsplash.com/photo-1512101176959-c557f3516787?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80\"\n                            alt=\"\">\n\n\n                        <img class=\"swiper-slide\"\n                            src=\"https://images.unsplash.com/photo-1560146491-bb9556272788?ixlib=rb-1.2.1&auto=format&fit=crop&w=701&q=80\"\n                            alt=\"\"> -->\n\n\n                        <video autoplay loop class=\"swiper-slide\"\n                            src=\"https://giant.gfycat.com/FaroffAptBrahmanbull.webm\"></video>\n\n                        <video loop class=\"swiper-slide\"\n                            src=\"https://giant.gfycat.com/BlushingWelloffLeonberger.webm\"></video>\n\n                        <video loop class=\"swiper-slide\"\n                            src=\"https://giant.gfycat.com/WealthyBogusCrocodileskink.webm\"></video>\n\n                        <video loop class=\"swiper-slide\"\n                            src=\"https://thumbs.gfycat.com/SnivelingCompassionateBaleenwhale-mobile.mp4\"></video>\n\n                        <video loop class=\"swiper-slide\"\n                            src=\"https://giant.gfycat.com/WindingScrawnyFritillarybutterfly.webm\"></video>\n\n                        <video loop class=\"swiper-slide\"\n                            src=\"https://giant.gfycat.com/MistyImaginativeCow.webm\"></video>\n\n                    </div>\n\n                    <!-- <div class=\"swiper-scrollbar\"></div> -->\n                    <div class=\"swiper-pagination\"></div>\n\n\n                </div>\n            </ng-template>\n\n        </div>\n    </div>\n    <form class=\"comment-form\" (click)=\"openCommentSection()\">\n\n        <mat-form-field class=\"example-full-width\">\n            <textarea matInput placeholder=\"Leave a comment\"></textarea>\n        </mat-form-field>\n    </form>\n</ng-container>"
+module.exports = "<ng-container *ngIf=\"post\">\n    <div class=\"page-container\">\n        <mat-card *ngIf=\"post.type === 'book' || post.type === 'documentary' \">\n            <img *ngIf=\"post.image\" [@fadeAnimation] id=\"post-bg\" mat-card-image src=\"{{post.image}}\"\n                alt=\"Photo of a Shiba Inu\">\n            <!-- <iframe *ngIf=\"post.video\" id=\"post-img_{{post._id}}\" width=\"100%\" height=\"100%\" [src]=\"post.video | safe\"\n                        frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\"\n                        allowfullscreen></iframe> -->\n            <mat-card-footer id=\"cover-footer\">\n                <img id=\"post-cover-img\" src=\"{{post.image}}\" alt=\"\"\n                    [ngClass]=\"{'book-cover': post.type === 'book' || post.type === 'documentary'}\">\n                <span id=\"media-details\" [@enterAnimation]>\n                    <h3 id=\"media-title\">{{post.title}}</h3>\n                    <h5>by <i>{{post.author}}</i> </h5>\n                    <!-- <app-rating [rating]=\"rating\" [starCount]=\"starCount\" [color]=\"starColor\"\n                        (ratingUpdated)=\"onRatingChanged($event)\"></app-rating> -->\n                    <!-- <h3>{{post.rating}}</h3> -->\n                    <!-- <ng-container *ngIf=\"post.tags\">\n                                <mat-chip-list aria-label=\"Fish selection\">\n                                    <mat-chip *ngFor=\"let tag of post.tags\">{{tag}}</mat-chip>\n                                </mat-chip-list>\n                            </ng-container> -->\n                </span>\n            </mat-card-footer>\n        </mat-card>\n\n        <img *ngIf=\"post.type !== 'book' && post.type !== 'documentary' \" id=\"post-cover-img\" src=\"{{post.image}}\"\n            alt=\"\">\n        <div id=\"post-detail-container\" [@enterAnimation]\n            [ngClass]=\"{'move-down':  post.type === 'book' || post.type === 'documentary', 'white-bg':  post.type !== 'book' && post.type !== 'documentary'  }\">\n            <h1 *ngIf=\"post.type !== 'book' && post.type !== 'documentary' \">{{post.title}}</h1>\n\n            <mat-card [ngClass]=\"{ 'no-padding':  post.type !== 'book' && post.type !== 'documentary'  }\"\n                (touchstart)=\"swipe($event, 'start')\" (touchend)=\"swipe($event, 'end')\">\n                <mat-tab-group *ngIf=\"post.type === 'book' || post.type === 'documentary'; else noBook\"\n                    mat-align-tabs=\"center\" [selectedIndex]=\"selectedTab\" (selectedTabChange)=\"navigateTo($event)\">\n                    <mat-tab label=\"Review\">\n\n                        <div class=\"main-container\">\n                            <ng-template matTabContent>\n                                <router-outlet></router-outlet>\n\n\n\n\n                            </ng-template>\n                        </div>\n                    </mat-tab>\n                    <mat-tab label=\"Summary\">\n                        <div class=\"main-container\">\n                            <ng-template matTabContent>\n                                <router-outlet></router-outlet>\n\n\n                            </ng-template>\n                        </div>\n                    </mat-tab>\n                </mat-tab-group>\n            </mat-card>\n\n\n\n            <ng-template #noBook>\n                <p>{{post.message}}</p>\n                <div class=\"swiper-container\" [swiper]=\"config\" [(index)]=\"index\"\n                    (indexChange)=\"switchPlayback($event)\">\n                    <div class=\"swiper-wrapper\" (click)=\"openFullscreen()\">\n\n                        <!-- <img class=\"swiper-slide\"\n                            src=\"https://images.unsplash.com/photo-1512101176959-c557f3516787?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80\"\n                            alt=\"\">\n\n\n                        <img class=\"swiper-slide\"\n                            src=\"https://images.unsplash.com/photo-1560146491-bb9556272788?ixlib=rb-1.2.1&auto=format&fit=crop&w=701&q=80\"\n                            alt=\"\"> -->\n\n\n                        <video autoplay loop class=\"swiper-slide\"\n                            src=\"https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_30mb.mp4\"></video>\n\n                        <video loop class=\"swiper-slide\"\n                            src=\"https://archive.org/download/Pokemon_Movie_14.mp4/Pokemon_Movie_14.mp4\"></video>\n\n                    </div>\n\n                    <!-- <div class=\"swiper-scrollbar\"></div> -->\n                    <div class=\"swiper-pagination\"></div>\n\n\n                </div>\n                <h1>{{videoTitle}}</h1>\n            </ng-template>\n\n        </div>\n    </div>\n    <form class=\"comment-form\" (click)=\"openCommentSection()\">\n\n        <mat-form-field class=\"example-full-width\">\n            <textarea matInput placeholder=\"Leave a comment\"></textarea>\n        </mat-form-field>\n    </form>\n</ng-container>"
 
 /***/ }),
 
@@ -480,6 +480,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_post_detail_post_detail_review_post_detail_review_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./components/post-detail/post-detail-review/post-detail-review.component */ "./src/app/components/post-detail/post-detail-review/post-detail-review.component.ts");
 /* harmony import */ var _components_post_detail_post_detail_summary_post_detail_summary_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./components/post-detail/post-detail-summary/post-detail-summary.component */ "./src/app/components/post-detail/post-detail-summary/post-detail-summary.component.ts");
 /* harmony import */ var ngx_swiper_wrapper__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ngx-swiper-wrapper */ "./node_modules/ngx-swiper-wrapper/dist/ngx-swiper-wrapper.es5.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+
 
 
 
@@ -552,7 +554,8 @@ var AppModule = /** @class */ (function () {
                 _modules_material_module__WEBPACK_IMPORTED_MODULE_5__["MaterialModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_18__["FormsModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_18__["ReactiveFormsModule"],
-                ngx_swiper_wrapper__WEBPACK_IMPORTED_MODULE_30__["SwiperModule"]
+                ngx_swiper_wrapper__WEBPACK_IMPORTED_MODULE_30__["SwiperModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_31__["HttpClientModule"],
             ],
             providers: [_services_post_service__WEBPACK_IMPORTED_MODULE_14__["PostService"], {
                     provide: ngx_swiper_wrapper__WEBPACK_IMPORTED_MODULE_30__["SWIPER_CONFIG"],
@@ -713,19 +716,87 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_animations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/animations */ "./node_modules/@angular/animations/fesm5/animations.js");
 /* harmony import */ var src_app_services_toolbar_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/toolbar.service */ "./src/app/services/toolbar.service.ts");
+/* harmony import */ var src_app_services_post_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/post.service */ "./src/app/services/post.service.ts");
+
 
 
 
 
 var CreateComponent = /** @class */ (function () {
-    function CreateComponent(_toolbarService) {
+    function CreateComponent(_toolbarService, _postService) {
         this._toolbarService = _toolbarService;
+        this._postService = _postService;
+        this.file = null;
     }
     CreateComponent.prototype.ngOnInit = function () {
         this._toolbarService.setTitle('ARK');
+        this.getPost();
+    };
+    CreateComponent.prototype.onFileSelected = function (event) {
+        var _this = this;
+        this.file = event.target.files[0];
+        if (event.target.files && event.target.files[0]) {
+            var reader = new FileReader();
+            reader.readAsDataURL(event.target.files[0]); // read file as data url
+            reader.onload = function (event) {
+                // called once readAsDataURL is completed
+                _this.url = event.target.result;
+            };
+        }
+    };
+    CreateComponent.prototype.onPostSubmit = function () {
+        var _this = this;
+        var fd = new FormData();
+        fd.append("file", this.file, this.file.name);
+        var meta = {
+            username: 'dayz',
+            filetype: 'photo'
+        };
+        fd.append("meta", JSON.stringify(meta));
+        // console.log(post)
+        // Required fields
+        // if (!this.validateService.validatePost(post)) {
+        //   // this.flashMessage.show('Please fill in all fields', { cssClass: 'alert-danger', timeout: 3000 });
+        //   console.log("Fill in all fields");
+        //   return false;
+        // } else {
+        //Post post
+        this._postService.addPost(fd).subscribe(function (data) {
+            _this.data = data;
+            if (_this.data.success) {
+                // this._postService.setCurrentPostUrl(this.data.createdPost.photo)
+                // this.router.navigate(['post', this.data.createdPost._id])
+                // this.flashMessage.show('Posted', {cssClass: 'alert-success', timeout: 3000});
+                // this.router.navigate(['/'])
+                console.log('yesss');
+            }
+            else {
+                // this.router.navigate(['/'])
+                console.log("oh no no no ");
+            }
+        });
+        // }
+    };
+    CreateComponent.prototype.getPost = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var _a;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = this;
+                        return [4 /*yield*/, this._postService.getAllPosts()];
+                    case 1:
+                        _a.data = _b.sent();
+                        this.img = this.data.dir;
+                        console.log(this.data);
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
     CreateComponent.ctorParameters = function () { return [
-        { type: src_app_services_toolbar_service__WEBPACK_IMPORTED_MODULE_3__["ToolbarService"] }
+        { type: src_app_services_toolbar_service__WEBPACK_IMPORTED_MODULE_3__["ToolbarService"] },
+        { type: src_app_services_post_service__WEBPACK_IMPORTED_MODULE_4__["PostService"] }
     ]; };
     CreateComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1371,6 +1442,7 @@ var PostDetailComponent = /** @class */ (function () {
         this.starColorP = _rating_rating_component__WEBPACK_IMPORTED_MODULE_7__["StarRatingColor"].primary;
         this.starColorW = _rating_rating_component__WEBPACK_IMPORTED_MODULE_7__["StarRatingColor"].warn;
         this.prevIndex = 0;
+        this.videoTitle = "Big Bunny";
     }
     PostDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1449,6 +1521,16 @@ var PostDetailComponent = /** @class */ (function () {
         this.currentVideo = videos[i];
         this.currentVideo.play();
         this.prevIndex = i;
+        switch (i) {
+            case 0:
+                this.videoTitle = 'Big Bunny';
+                break;
+            case 1:
+                this.videoTitle = 'Pokemon';
+                break;
+            default:
+            // code block
+        }
     };
     PostDetailComponent.prototype.openFullscreen = function () {
         if (this.currentVideo.requestFullscreen) {
@@ -2174,10 +2256,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PostService", function() { return PostService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
+
+
 
 
 var PostService = /** @class */ (function () {
-    function PostService() {
+    function PostService(http) {
+        this.http = http;
         this.types = ['book', 'documentary', 'quote', 'article'];
         this.posts = [
             {
@@ -2574,6 +2661,7 @@ var PostService = /** @class */ (function () {
                 ]
             }
         ];
+        this.apiUrl = _environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].apiUrl;
     }
     PostService.prototype.getPosts = function () {
         return this.posts;
@@ -2584,6 +2672,31 @@ var PostService = /** @class */ (function () {
         });
         return post[0];
     };
+    PostService.prototype.addPost = function (fd) {
+        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
+        headers.append("Accept", "application/json");
+        return this.http.post(this.apiUrl + "posts", fd, { headers: headers });
+    };
+    PostService.prototype.getAllPosts = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var headers;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
+                        headers.append("Accept", "application/json");
+                        return [4 /*yield*/, this.http.get(this.apiUrl + "posts", {
+                                headers: headers
+                            })
+                                .toPromise()];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    PostService.ctorParameters = function () { return [
+        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }
+    ]; };
     PostService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
             providedIn: 'root'
@@ -2688,7 +2801,8 @@ __webpack_require__.r(__webpack_exports__);
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 var environment = {
-    production: false
+    production: false,
+    apiUrl: 'http://localhost:3000/api/v1/'
 };
 /*
  * For easier debugging in development mode, you can import the following file

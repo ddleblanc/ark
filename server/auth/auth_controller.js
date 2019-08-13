@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const User = require("../users/user_model");
-const config = require("../config/database");
+const User = require("../../../school/j2/p2/spa/123/socialmedia-master/users/user_model");
+const config = require("../../../school/j2/p2/spa/123/socialmedia-master/config/database");
 
 module.exports = {
   authenticate
