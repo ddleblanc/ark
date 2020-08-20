@@ -12,7 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.508.0",
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "express-async-handler": "^1.1.4",
